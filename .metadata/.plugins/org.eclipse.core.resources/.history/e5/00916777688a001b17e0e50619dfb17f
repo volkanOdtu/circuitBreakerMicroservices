@@ -1,0 +1,5 @@
+package com.vinsguru.rating.dto;
+
+public class ProductDto {
+
+}

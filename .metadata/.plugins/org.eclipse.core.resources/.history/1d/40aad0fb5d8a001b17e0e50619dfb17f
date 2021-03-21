@@ -1,0 +1,22 @@
+package com.vinsguru.service;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.vinsguru.product.dto.ProductRatingDto;
+
+@Service
+public class RatingServiceClient {
+
+	private final RestTemplate restTemplate = new RestTemplate();
+	
+	@Value("${rating.service.endpoint}")
+	private String ratingService;
+	
+	@Retry()
+	public ProductRatingDto getProductRatingDto(int productId) {
+		return this.restTemplate.getForEntity(this.ratingService + productId, ProductRatingDto.class ).getBody();
+	}
+	
+}
